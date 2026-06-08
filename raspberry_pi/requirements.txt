@@ -1,0 +1,17 @@
+# Install on Raspberry Pi OS (64-bit) with:
+#   pip install -r requirements.txt
+#
+# Note: picamera2 is pre-installed on Raspberry Pi OS Bullseye/Bookworm.
+# If missing: sudo apt install -y python3-picamera2
+#
+# Edge Impulse Linux SDK requires the runner binary:
+#   sudo apt install -y wget
+#   wget -q -O - https://cdn.edgeimpulse.com/firmware/linux/runner-latest-linux-aarch64.tar.gz | tar xz
+#   sudo mv runner /usr/local/bin/edge-impulse-runner
+
+picamera2>=0.3.12
+edge-impulse-linux>=1.0.6
+requests>=2.31.0
+python-dotenv>=1.0.0
+RPi.GPIO>=0.7.1
+numpy>=1.26.0
