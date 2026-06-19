@@ -214,13 +214,13 @@ def on_scan_triggered(user_id: str):
     # if the model couldn't produce a result at all, we reject immediately
     if result is None:
         log.warning("Scan skipped: no classification result.")
-        report_result(user_id, False, message="Bottle type not recognised, please remove")
+        report_result(user_id, False, message="Please remove the object and try again.")
         return
 
     # "unknown" means no bottle was detected in the frame
     if result["label"].lower() == "unknown":
         log.warning("No bottle detected (unknown). Move bottle into frame and try again.")
-        report_result(user_id, False, message="Bottle type not recognised, please remove")
+        report_result(user_id, False, message="No bottle detected — please place the bottle in front of the camera.")
         return
 
     # if the model is not confident enough we don't accept the scan to avoid false positives
@@ -229,14 +229,14 @@ def on_scan_triggered(user_id: str):
             "Confidence %.2f < %.2f — rejected. Improve lighting or move bottle closer.",
             result["confidence"], CONFIDENCE,
         )
-        report_result(user_id, False, message="Bottle type not recognised, please remove")
+        report_result(user_id, False, message="Please remove the object and try again.")
         return
 
     success, pts, weight = post_scan(user_id, result["label"], result["confidence"])
     if success:
         report_result(user_id, True, bottle_type=result["label"].upper(), points=pts, message=f"Bottle scanned successfully! Weight: {weight}g")
     else:
-        report_result(user_id, False, message="Bottle type not recognised, please remove")
+        report_result(user_id, False, message="Please remove the object and try again.")
 
 
 # cleans up hardware resources when the script is stopped with Ctrl+C or a kill signal

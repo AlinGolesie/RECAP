@@ -105,7 +105,7 @@ router.post("/scan", async (req, res) => {
 
   } catch (error) {
     console.error("Scan error:", error);
-    return res.status(500).json({ success: false, message: "Server error during scan" });
+    return res.status(500).json({ success: false, message: `Server error: ${error.message}` });
   }
 });
 

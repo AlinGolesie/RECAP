@@ -1,0 +1,25 @@
+# Firebase credentials - never commit these
+backend/serviceAccountKey.json
+*-firebase-adminsdk-*.json
+
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Environment files
+.env
+**/.env
+
+# Build output
+frontend/dist/
+frontend/build/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
